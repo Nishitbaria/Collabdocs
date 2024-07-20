@@ -1,10 +1,11 @@
 "use server";
 
-import { CreateDocumentParams, parseStringify } from "@/types";
+
 import { RoomAccesses } from "@liveblocks/node";
 import { nanoid } from 'nanoid'
 import { liveblocks } from "../liveblock";
 import { revalidatePath } from "next/cache";
+import { parseStringify } from "../utils";
 
 
 export async function createDocument({ userId, email }: CreateDocumentParams) {
@@ -32,7 +33,10 @@ export async function createDocument({ userId, email }: CreateDocumentParams) {
 
         return parseStringify(room);
 
+
     } catch (error) {
         console.log(`Error happened while creating a room: ${error}`);
     }
+
+
 }
