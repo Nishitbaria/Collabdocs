@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 import { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes"
+import Provide from "./Provider";
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -37,7 +38,9 @@ export default function RootLayout({
             fontSans.variable
           )}
         >
-          {children}
+          <Provide >
+            {children}
+          </Provide>
         </body>
       </html>
     </ClerkProvider>
