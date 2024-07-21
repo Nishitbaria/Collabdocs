@@ -1,26 +1,16 @@
-
 import { liveblocks } from "@/lib/liveblock";
-import { getUserColor } from "@/types";
-
+import { getUserColor } from "@/lib/utils";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-
 export async function POST(request: Request) {
-    // Get the current user from clerauth database
-
     const clerkUser = await currentUser();
 
+    if (!clerkUser) redirect('/sign-in');
 
-    if (!clerkUser) {
-        return redirect("/sign-in");
-    }
-
-    // Get the user metadata 
     const { id, firstName, lastName, emailAddresses, imageUrl } = clerkUser;
 
-    // get the current user from the your database
-
+    // Get the current user from your database
     const user = {
         id,
         info: {
@@ -28,7 +18,7 @@ export async function POST(request: Request) {
             name: `${firstName} ${lastName}`,
             email: emailAddresses[0].emailAddress,
             avatar: imageUrl,
-            oolor: getUserColor(id),
+            color: getUserColor(id),
         }
     }
 

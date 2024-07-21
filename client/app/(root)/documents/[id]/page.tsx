@@ -1,14 +1,37 @@
-"use client";
 import CollaborativeRoom from '@/components/CollaborativeRoom'
-import { Editor } from '@/components/editor/Editor'
-import Header from '@/components/Header'
-import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
+import { getDocument } from '@/lib/actions/room.actions';
+import { currentUser } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
 import React from 'react'
 
-export default function Documents() {
+export default async function Documents({ params:
+    { id }
+}: SearchParamProps) {
+
+
+
+
+
+
+    const clerkUser = await currentUser();
+
+
+    if (!clerkUser) redirect('/sign-in');
+
+
+    const room = await getDocument({ roomId: id, userId: clerkUser.emailAddresses[0].emailAddress });
+
+
+
+    if (!room) redirect('/dashboard');
+
+
+
     return (
         <main className="flex w-full flex-col items-center">
             <CollaborativeRoom
+                roomId={id}
+                roomMetadata={room.metadata}
             />
         </main>
     )
