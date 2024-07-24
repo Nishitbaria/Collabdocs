@@ -3,7 +3,14 @@ import { getDocument } from "@/lib/actions/room.actions";
 import { getClerkUsers } from "@/lib/actions/user.action";
 
 import { currentUser } from "@clerk/nextjs/server"
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
+
+
+export const metadata: Metadata = {
+    title: `LiveDocs-${new Date().getTime()}`,
+    description: 'Your go-to collaborative editor for documents and notes sharing with your team members and friends in real-time with live updates',
+}
 
 const Document = async ({ params: { id } }: SearchParamProps) => {
     const clerkUser = await currentUser();
@@ -41,3 +48,5 @@ const Document = async ({ params: { id } }: SearchParamProps) => {
 }
 
 export default Document
+
+
