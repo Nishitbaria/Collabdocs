@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid'
 import { liveblocks } from "../liveblock";
 import { revalidatePath } from "next/cache";
 import { parseStringify } from "../utils";
+import { redirect } from "next/navigation";
 
 
 export const createDocument = async ({ userId, email }: CreateDocumentParams) => {
@@ -77,4 +78,32 @@ export async function updateDocument(roomId: string, title: string) {
     } catch (error) {
         console.log(`Error happened while updating a room: ${error}`);
     }
-} 
+}
+
+export async function getDocuments(email: string) {
+
+    try {
+
+        if (!email) {
+            console.log("User Email is Not found");
+            redirect('/sign-in');
+        }
+        const rooms = await liveblocks.getRooms({
+            userId: email
+        })
+
+        console.log(rooms, "rooms");
+
+
+        if (!rooms) {
+
+            console.log("no rooms");
+        }
+        return parseStringify(rooms);
+
+    } catch (error) {
+        console.log(`Error happened while getting a room: ${error}`);
+    }
+
+
+}

@@ -11,11 +11,11 @@ import { useEffect, useRef, useState } from 'react';
 import { Input } from './ui/input';
 import { updateDocument } from '@/lib/actions/room.actions';
 
-const CollaborativeRoom = ({ roomId, roomMetadata }: CollaborativeRoomProps) => {
+const CollaborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: CollaborativeRoomProps) => {
 
 
 
-    const currentUserType = "editor";
+
 
 
     const [documentTitle, setDocumentTitle] = useState(roomMetadata.title);
@@ -138,7 +138,7 @@ const CollaborativeRoom = ({ roomId, roomMetadata }: CollaborativeRoomProps) => 
                             </SignedIn>
                         </div>
                     </Header>
-                    <Editor />
+                    <Editor roomId={roomId} currentUserType={currentUserType} />
                 </div>
             </ClientSideSuspense>
         </RoomProvider>
