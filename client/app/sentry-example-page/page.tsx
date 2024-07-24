@@ -2,6 +2,7 @@
 
 import Head from "next/head";
 import * as Sentry from "@sentry/nextjs";
+import { Button } from "@/components/ui/button";
 
 export default function Page() {
   return (
@@ -36,7 +37,7 @@ export default function Page() {
         </h1>
 
         <p>Get started by sending us a sample error:</p>
-        <button
+        <Button
           type="button"
           style={{
             padding: "12px",
@@ -61,7 +62,7 @@ export default function Page() {
           }}
         >
           Throw error!
-        </button>
+        </Button>
 
         <p>
           Next, look for the error on the{" "}

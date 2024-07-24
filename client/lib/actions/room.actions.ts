@@ -41,10 +41,6 @@ export const getDocument = async ({ roomId, userId }: { roomId: string; userId: 
     try {
         const room = await liveblocks.getRoom(roomId);
 
-
-
-        console.log(room);
-
         const hasAccess = Object.keys(room.usersAccesses).includes(userId);
 
         if (!hasAccess) {
@@ -59,21 +55,15 @@ export const getDocument = async ({ roomId, userId }: { roomId: string; userId: 
 
 export async function updateDocument(roomId: string, title: string) {
     try {
-
-        console.log(roomId, title, "controlled reaching here");
         const updatedRoom = await liveblocks.updateRoom(roomId, {
             metadata: {
                 title
             }
         })
 
-        console.log(updatedRoom, "updated room");
         revalidatePath(`/documents/${roomId}`);
 
-
         return parseStringify(updatedRoom);
-
-
 
     } catch (error) {
         console.log(`Error happened while updating a room: ${error}`);
@@ -81,9 +71,7 @@ export async function updateDocument(roomId: string, title: string) {
 }
 
 export async function getDocuments(email: string) {
-
     try {
-
         if (!email) {
             console.log("User Email is Not found");
             redirect('/sign-in');
@@ -92,29 +80,22 @@ export async function getDocuments(email: string) {
             userId: email
         })
 
-        console.log(rooms, "rooms");
-
-
         if (!rooms) {
-
             console.log("no rooms");
+            redirect('/dashboard');
         }
         return parseStringify(rooms);
 
     } catch (error) {
         console.log(`Error happened while getting a room: ${error}`);
     }
-
-
 }
 
 export async function updateDocumentAccess({ roomId, email, updatedBy, userType }: ShareDocumentParams) {
     try {
-
         const usersAccesses: RoomAccesses = {
             [email]: getAccessType(userType) as AccessType,
         }
-
         const room = await liveblocks.updateRoom(roomId, {
             usersAccesses
         });
