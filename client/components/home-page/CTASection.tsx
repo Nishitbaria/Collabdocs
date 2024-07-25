@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
 import { Heart, Shield, Globe, BarChart, File, Rss, ChevronRight, LucideIcon } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface IconInfo {
     Icon: LucideIcon;
@@ -128,20 +130,22 @@ const CTASection: React.FC = () => {
 
             {/* Centered CTA content */}
             <div className="relative z-50 flex flex-col items-center justify-center text-center px-4 max-w-4xl mt-36">
-                <div className="size-32 rounded-[2rem] border border-white/20 bg-black/50 p-3 shadow-2xl relative">
-                    <Heart className="size-full text-white neon-glow" style={{ '--icon-glow': '#ff4444' } as React.CSSProperties} />
-                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 opacity-30 mix-blend-overlay rounded-[2rem]"></div>
+                <div className="mx-auto size-24 rounded-[2rem] border border-dark-500  p-3 shadow-2xl backdrop-blur-md bg-black/10 lg:size-32">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-heart-handshake mx-auto size-16 text-white lg:size-24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"></path><path d="m18 15-2-2"></path><path d="m15 18-2-2"></path></svg>
+                    {/* <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 opacity-30 mix-blend-overlay rounded-[2rem]"></div> */}
                 </div>
                 <div className="mt-8 space-y-4">
-                    <h1 className="text-4xl font-bold text-white">STOP WASTING TIME ON DESIGN.</h1>
-                    <p className="text-lg text-white">Start your 7-day free trial. No credit card required.</p>
-                    <a
-                        href="#"
-                        className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-10 group mt-4 rounded-[2rem] px-6"
+                    <h1 className="text-4xl font-bold text-white">COLLABORATE IN REAL-TIME </h1>
+                    <p className="text-lg text-white"> Share documents and notes with your team members
+                        <br />
+                        and friends. Experience live updates as you work together.</p>
+                    <Link
+                        href="/dashboard"
+                        className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input border-dark-400 bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-10 group mt-4 rounded-[2rem] px-6"
                     >
-                        Get Started
+                        Start Collaborating
                         <ChevronRight className="ml-1 size-4 transition-all duration-300 ease-out group-hover:translate-x-1" />
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
