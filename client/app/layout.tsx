@@ -11,8 +11,8 @@ const fontSans = FontSans({
   variable: "--font-sans",
 })
 export const metadata: Metadata = {
-  title: 'LiveDocs',
-  description: 'Your go-to collaborative editor',
+  title: 'LiveDocs - Collaborative Editor',
+  description: 'Your go-to collaborative editor for documents and notes sharing with your team members and friends in real-time with live updates',
 }
 
 export default function RootLayout({

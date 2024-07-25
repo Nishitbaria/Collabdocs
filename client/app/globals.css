@@ -7,6 +7,37 @@
 
 @import "../styles/dark-theme.css";
 
+@import url("https://fonts.googleapis.com/css2?family=Vibur&display=swap");
+
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
+}
+
+.animate-scroll {
+  animation: scroll var(--animation-duration, 40s)
+    var(--animation-direction, forwards) linear infinite;
+}
+
+.neon-glow {
+  filter: drop-shadow(0 0 2px var(--icon-glow))
+    drop-shadow(0 0 4px var(--icon-glow)) drop-shadow(0 0 6px var(--icon-glow));
+}
+
+.neon-text {
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa,
+    0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+}
+
+.neon-text-subtle {
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa;
+}
+
+.neon-button {
+  box-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa;
+}
+
 /* ========================================== TAILWIND STYLES */
 @layer base {
   :root {
