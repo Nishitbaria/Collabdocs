@@ -118,13 +118,16 @@ const CTASection: React.FC = () => {
         <div className="relative h-screen w-full overflow-hidden bg-black flex items-center justify-center font-sans">
             {/* Scrolling background */}
             <div className="absolute inset-0 flex flex-col justify-center overflow-hidden">
-                <IconRow speed="normal" direction="left" glowIntensity={30} />
-                <IconRow speed="slow" direction="right" glowIntensity={20} />
-                <IconRow speed="fast" direction="left" glowIntensity={10} />
+
+                <IconRow speed="fast" direction="right" glowIntensity={1} />
+                <IconRow speed="normal" direction="right" glowIntensity={1} />
+                <div className='flex opacity-45'>
+                    <IconRow speed="slow" direction="right" glowIntensity={1} />
+                </div>
             </div>
 
             {/* Centered CTA content */}
-            <div className="relative z-50 flex flex-col items-center justify-center text-center px-4 max-w-4xl">
+            <div className="relative z-50 flex flex-col items-center justify-center text-center px-4 max-w-4xl mt-36">
                 <div className="size-32 rounded-[2rem] border border-white/20 bg-black/50 p-3 shadow-2xl relative">
                     <Heart className="size-full text-white neon-glow" style={{ '--icon-glow': '#ff4444' } as React.CSSProperties} />
                     <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 opacity-30 mix-blend-overlay rounded-[2rem]"></div>
