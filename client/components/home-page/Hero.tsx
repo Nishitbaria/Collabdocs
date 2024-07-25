@@ -20,12 +20,13 @@ export function Hero() {
                     Your go-to collaborative editor for documents and notes sharing with your team members and friends in real-time with live updates.
                 </p>
                 <div className="mt-8 flex justify-center space-x-4">
-                    <Link href="/signup" className="bg-white text-black font-semibold py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">
+                    <Link href="/dashboard" className="bg-white text-black font-semibold py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors">
                         Get Started
                     </Link>
-                    <Link href="/demo" className="bg-transparent text-white font-semibold py-2 px-4 rounded-lg border border-white hover:bg-white hover:text-black transition-colors">
-                        Try Demo
-                    </Link>
+
+
+
+
                 </div>
             </div>
         </div>

@@ -6,12 +6,12 @@ import { FaDiscord, FaTwitter, FaGithub } from 'react-icons/fa';
 const Footer: React.FC = () => {
     return (
         <footer className="bg-black text-gray-300 w-full">
-            <div className="container mx-auto px-4 py-16">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="container mx-auto px-4 py-16 md:py-20">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
                     <div className="col-span-1 md:col-span-2">
                         <Link href="/" className="flex items-center gap-2 mb-4">
                             <Image src="/assets/icons/doc.svg" alt="LiveDocs Logo" width={32} height={32} className="h-8 w-8" />
-                            <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">LiveDocs</span>
+                            <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">LiveBlocks</span>
                         </Link>
                         <p className="text-gray-400 max-w-xs">Your go-to collaborative editor for documents and notes sharing with your team members and friends in real-time with live updates.</p>
                     </div>
@@ -23,7 +23,6 @@ const Footer: React.FC = () => {
                             <li><Link href="/features" className="text-gray-400 hover:text-gray-200 transition-colors duration-200">Live Updates</Link></li>
                         </ul>
                     </div>
-
                     <div>
                         <h2 className="mb-4 text-sm font-medium text-white uppercase tracking-wider">Company</h2>
                         <ul className="space-y-2">
