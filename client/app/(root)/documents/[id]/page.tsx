@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 
 
 export const metadata: Metadata = {
-    title: `LiveDocs-${new Date().getTime()}`,
+    title: `Collabdocs-${new Date().getTime()}`,
     description: 'Your go-to collaborative editor for documents and notes sharing with your team members and friends in real-time with live updates',
 }
 

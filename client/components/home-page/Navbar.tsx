@@ -20,7 +20,7 @@ const Navbar = () => {
         <header className={`fixed left-0 top-0 z-50 w-full ${isScrolled ? 'translate-y-0' : 'translate-y-0'} animate-fade-in border-b border-gray-800 opacity-100 backdrop-blur-md [--animation-delay:600ms]  transition-all duration-300`}>
             <nav className="container flex h-[3.5rem] items-center justify-between">
                 <Link href="/" className="text-md flex items-center text-white">
-                    Live Blocks
+                    Collabdocs
                 </Link>
 
                 {/* Desktop Navigation */}
