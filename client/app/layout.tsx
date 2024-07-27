@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes"
 import Provider from "./Provider";
+import NextTopLoader from 'nextjs-toploader';
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -39,6 +40,9 @@ export default function RootLayout({
           )}
         >
           <Provider>
+            <NextTopLoader
+              showSpinner={false}
+            />
             {children}
             <Toaster />
           </Provider>
