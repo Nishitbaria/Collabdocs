@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button';
 import {
     autoUpdate,
     flip,
@@ -110,7 +109,7 @@ function Toolbar({
             }}
         >
             <div className="floating-toolbar">
-                <Button
+                <button
                     onClick={() => {
                         const isOpen = editor.dispatchCommand(
                             OPEN_FLOATING_COMPOSER_COMMAND,
@@ -128,7 +127,7 @@ function Toolbar({
                         width={24}
                         height={24}
                     />
-                </Button>
+                </button>
             </div>
         </div>,
         container,
