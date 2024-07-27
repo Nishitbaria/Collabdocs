@@ -1,6 +1,6 @@
 "use client";
 import { useSelf } from '@liveblocks/react/suspense';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     Dialog,
     DialogContent,
@@ -16,7 +16,7 @@ import { Input } from './ui/input';
 import UserTypeSelector from './UserTypeSelector';
 import Collaborator from './Collaborator';
 import { updateDocumentAccess } from '@/lib/actions/room.actions';
-
+import toast from 'react-hot-toast';
 
 export default function ShareModal({ roomId, collaborators, creatorId, currentUserType }: ShareDocumentDialogProps) {
     const user = useSelf()
@@ -24,21 +24,34 @@ export default function ShareModal({ roomId, collaborators, creatorId, currentUs
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState('')
-
     const [userType, setUserType] = useState<UserType>('viewer');
-
 
     const shareDocumentHandler = async () => {
         setLoading(true);
 
-        await updateDocumentAccess({
-            roomId,
-            email,
-            userType,
-            updatedBy: user.info
-        });
-        setLoading(false);
+        try {
+            const updateddoc = await updateDocumentAccess({
+                roomId,
+                email,
+                userType,
+                updatedBy: user.info
+            });
+
+
+            if (updateddoc === undefined) {
+                throw new Error('User is not found please try again');
+            }
+
+            toast.success('User invited successfully!');
+        } catch (error) {
+            console.error(error);
+            toast.error('User is not found please try again');
+        } finally {
+            setLoading(false);
+        }
     }
+
+
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -61,11 +74,9 @@ export default function ShareModal({ roomId, collaborators, creatorId, currentUs
 
             <DialogContent className='shad-dialog'>
                 <DialogHeader>
-                    <DialogTitle>Manage who can viewer
-                        this project
-                    </DialogTitle>
+                    <DialogTitle>Manage who can view this project</DialogTitle>
                     <DialogDescription>
-                        select the people you want to share this project with
+                        Select the people you want to share this project with
                     </DialogDescription>
                 </DialogHeader>
                 <Label htmlFor='email' className='text-blue-100'>
@@ -92,7 +103,6 @@ export default function ShareModal({ roomId, collaborators, creatorId, currentUs
                         {loading ? 'Sharing...' : 'Invite'}
                     </Button>
                 </div>
-
 
                 <div className='my-2 space-y-2'>
                     <ul className='flex flex-col'>

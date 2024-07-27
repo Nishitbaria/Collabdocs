@@ -1,6 +1,6 @@
 import { Inter as FontSans } from "next/font/google"
 import './globals.css'
-
+import { Toaster } from 'react-hot-toast';
 import { cn } from "@/lib/utils"
 import { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -40,6 +40,7 @@ export default function RootLayout({
         >
           <Provider>
             {children}
+            <Toaster />
           </Provider>
         </body>
       </html>

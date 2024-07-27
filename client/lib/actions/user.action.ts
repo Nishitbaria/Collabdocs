@@ -12,18 +12,23 @@ export const getClerkUsers = async ({ userIds }: { userIds: string[] }) => {
             emailAddress: userIds,
         });
 
-        const users = data.map((user) => ({
-            id: user.id,
-            name: `${user.firstName} ${user.lastName}`,
-            email: user.emailAddresses[0].emailAddress,
-            avatar: user.imageUrl,
-        }));
+        const users = data
+            .map((user) => user ? ({
+                id: user.id,
+                name: `${user.firstName} ${user.lastName}`,
+                email: user.emailAddresses[0].emailAddress,
+                avatar: user.imageUrl,
+            }) : null)
+            .filter(Boolean); // This will remove any null entries
 
-        const sortedUsers = userIds.map((email) => users.find((user) => user.email === email));
+        const sortedUsers = userIds
+            .map((email) => users.find((user) => user?.email === email))
+            .filter(Boolean); // This will remove any undefined entries
 
         return parseStringify(sortedUsers);
     } catch (error) {
-        console.log(`Error fetching users: ${error}`);
+        console.error(`Error fetching users: ${error}`);
+        return [];
     }
 }
 

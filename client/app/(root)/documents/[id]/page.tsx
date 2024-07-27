@@ -1,7 +1,6 @@
 import CollaborativeRoom from "@/components/CollaborativeRoom"
 import { getDocument } from "@/lib/actions/room.actions";
 import { getClerkUsers } from "@/lib/actions/user.action";
-
 import { currentUser } from "@clerk/nextjs/server"
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
@@ -26,12 +25,17 @@ const Document = async ({ params: { id } }: SearchParamProps) => {
     const userIds = Object.keys(room.usersAccesses);
     const users = await getClerkUsers({ userIds });
 
-    const usersData = users.map((user: User) => ({
-        ...user,
-        userType: room.usersAccesses[user.email]?.includes('room:write')
-            ? 'editor'
-            : 'viewer'
-    }))
+    const usersData = users.map((user: User | null) => {
+        if (!user) {
+            return null;
+        }
+        return {
+            ...user,
+            userType: room.usersAccesses[user.email]?.includes('room:write')
+                ? 'editor'
+                : 'viewer'
+        };
+    }).filter(Boolean); // Remove any null entries
 
     const currentUserType = room.usersAccesses[clerkUser.emailAddresses[0].emailAddress]?.includes('room:write') ? 'editor' : 'viewer';
 

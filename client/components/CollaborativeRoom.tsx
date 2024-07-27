@@ -110,6 +110,7 @@ const CollaborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: Col
                                 collaborators={users}
                                 creatorId={roomMetadata.creatorId}
                                 currentUserType={currentUserType}
+
                             />
 
                             <SignedOut>

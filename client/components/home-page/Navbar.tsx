@@ -30,10 +30,10 @@ const Navbar = () => {
                 <div className="hidden md:flex items-center space-x-4">
 
                     <SignedOut>
-                        <Link href="/signin" className="text-sm text-white hover:text-gray-300">
+                        <Link href="/sign-in" className="text-sm text-white hover:text-gray-300">
                             Log in
                         </Link>
-                        <Link href="/signup" className="inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 backdrop-blur-md text-white bg-[#262626] hover:bg-[#262626]/80 hover:bg-gray-200 h-9 px-4 py-2 text-sm">
+                        <Link href="/sign-up" className="inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 backdrop-blur-md text-white bg-[#262626] hover:bg-[#262626]/80 hover:bg-gray-200 h-9 px-4 py-2 text-sm">
                             Sign up
                         </Link>
                     </SignedOut>

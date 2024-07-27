@@ -7,6 +7,7 @@ import { liveblocks } from "../liveblock";
 import { revalidatePath } from "next/cache";
 import { getAccessType, parseStringify } from "../utils";
 import { redirect } from "next/navigation";
+import { getClerkUsers } from "./user.action";
 
 
 export const createDocument = async ({ userId, email }: CreateDocumentParams) => {
@@ -93,6 +94,14 @@ export async function getDocuments(email: string) {
 
 export async function updateDocumentAccess({ roomId, email, updatedBy, userType }: ShareDocumentParams) {
     try {
+        // Check if the user exists using getClerkUsers
+        const users = await getClerkUsers({ userIds: [email] });
+
+
+        if (users.length === 0) {
+            console.log(`User with email ${email} does not exist.`);
+            return;
+        }
         const usersAccesses: RoomAccesses = {
             [email]: getAccessType(userType) as AccessType,
         }
