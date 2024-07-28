@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 }
 
 const Document = async ({ params: { id } }: SearchParamProps) => {
+
     const clerkUser = await currentUser();
     if (!clerkUser) redirect('/sign-in');
 

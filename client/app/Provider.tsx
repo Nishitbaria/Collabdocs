@@ -26,7 +26,7 @@ const Provider = ({ children }: { children: ReactNode }) => {
 
                 return roomUsers;
             }}
-
+            throttle={16}
         >
             <ClientSideSuspense fallback={<Loader />}>
                 {children}

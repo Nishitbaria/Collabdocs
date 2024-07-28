@@ -11,6 +11,9 @@ import Image from 'next/image';
 import { updateDocument } from '@/lib/actions/room.actions';
 import Loader from './Loader';
 import ShareModal from './ShareModal';
+import LiveCurson from './LiveCurson';
+import { Cursor } from './Cursor';
+import LiveCursor from './LiveCurson';
 
 const CollaborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: CollaborativeRoomProps) => {
     const [documentTitle, setDocumentTitle] = useState(roomMetadata.title);
@@ -63,7 +66,9 @@ const CollaborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: Col
 
 
     return (
-        <RoomProvider id={roomId}>
+        <RoomProvider id={roomId}
+            initialPresence={{ cursor: null }}
+        >
             <ClientSideSuspense fallback={<Loader />}>
                 <div className="collaborative-room">
                     <Header>
@@ -84,6 +89,7 @@ const CollaborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: Col
                                     <p className="document-title">{documentTitle}</p>
                                 </>
                             )}
+
 
                             {currentUserType === 'editor' && !editing && (
                                 <Image
@@ -122,8 +128,10 @@ const CollaborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: Col
                         </div>
                     </Header>
                     <Editor roomId={roomId} currentUserType={currentUserType} />
+
                 </div>
             </ClientSideSuspense>
+
         </RoomProvider>
     )
 }
